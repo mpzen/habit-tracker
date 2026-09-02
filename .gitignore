@@ -1,0 +1,17 @@
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+
+# Node (arrives in Chapter 06)
+node_modules/
+npm-debug.log*
+
+# Logs and local env
+*.log
+.env
+.env.local
