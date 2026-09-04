@@ -72,3 +72,9 @@ h1 {
   border: 1px solid var(--line);
   border-radius: 0.5rem;
 }
+
+.empty {
+  padding: 0.85rem 1rem;
+  color: var(--muted);
+  font-style: italic;
+}
