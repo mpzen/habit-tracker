@@ -20,10 +20,26 @@ function renderHabits(list, items) {
   }
 }
 
+function addHabit(name) {
+  habits.push({ name: name });
+  renderHabits(document.getElementById("habit-list"), habits);
+}
+
 function init() {
   const list = document.getElementById("habit-list");
   if (!list) return;
   renderHabits(list, habits);
+
+  const form = document.getElementById("add-form");
+  const input = document.getElementById("habit-input");
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const name = input.value.trim();
+    if (name === "") return;
+    addHabit(name);
+    input.value = "";
+    input.focus();
+  });
 }
 
 document.addEventListener("DOMContentLoaded", init);
