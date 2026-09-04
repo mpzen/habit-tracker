@@ -24,8 +24,8 @@ python3 -m http.server 8000
 ## Roadmap
 
 - [x] 00 — Project skeleton
-- [ ] 01 — Render a habit list
-- [ ] 02 — Add habits via a form
+- [x] 01 — Render a habit list
+- [x] 02 — Add habits via a form
 - [ ] 03 — Toggle a habit done for today
 - [ ] 04 — Persist to localStorage
 - [ ] 05 — Delete a habit
