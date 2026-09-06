@@ -1,9 +1,27 @@
 "use strict";
 
 // Habit Tracker — entry point.
-// Chapter 03: click a habit to toggle it done for today.
+// Chapter 04: persist habits in the browser with localStorage.
 
+const STORAGE_KEY = "habit-tracker.habits.v1";
 const habits = [];
+
+function saveHabits() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(habits));
+}
+
+function loadHabits() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return;
+  try {
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed)) {
+      habits.push(...parsed);
+    }
+  } catch (err) {
+    console.warn("Ignoring unreadable saved habits:", err);
+  }
+}
 
 function renderHabits(list, items) {
   list.innerHTML = "";
@@ -22,6 +40,7 @@ function renderHabits(list, items) {
     li.textContent = habit.name;
     li.addEventListener("click", () => {
       habit.done = !habit.done;
+      saveHabits();
       renderHabits(list, items);
     });
     list.appendChild(li);
@@ -30,12 +49,14 @@ function renderHabits(list, items) {
 
 function addHabit(name) {
   habits.push({ name: name, done: false });
+  saveHabits();
   renderHabits(document.getElementById("habit-list"), habits);
 }
 
 function init() {
   const list = document.getElementById("habit-list");
   if (!list) return;
+  loadHabits();
   renderHabits(list, habits);
 
   const form = document.getElementById("add-form");
