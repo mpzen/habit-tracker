@@ -1,7 +1,7 @@
 "use strict";
 
 // Habit Tracker — entry point.
-// Chapter 04: persist habits in the browser with localStorage.
+// Chapter 05: show unfinished habits first, done ones last.
 
 const STORAGE_KEY = "habit-tracker.habits.v1";
 const habits = [];
@@ -34,7 +34,8 @@ function renderHabits(list, items) {
     return;
   }
 
-  for (const habit of items) {
+  const ordered = [...items].sort((a, b) => Number(a.done) - Number(b.done));
+  for (const habit of ordered) {
     const li = document.createElement("li");
     li.className = habit.done ? "habit done" : "habit";
     li.textContent = habit.name;
