@@ -12,8 +12,15 @@ function saveHabits() {
 
 function loadHabits() {
   const raw = localStorage.getItem(STORAGE_KEY);
-  const parsed = JSON.parse(raw);
-  habits.push(...parsed);
+  if (!raw) return;
+  try {
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed)) {
+      habits.push(...parsed);
+    }
+  } catch (err) {
+    console.warn("Ignoring unreadable saved habits:", err);
+  }
 }
 
 function renderHabits(list, items) {
