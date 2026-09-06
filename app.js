@@ -1,7 +1,7 @@
 "use strict";
 
 // Habit Tracker — entry point.
-// Chapter 04: persist habits in the browser with localStorage.
+// Chapter 05: delete a habit with the × button.
 
 const STORAGE_KEY = "habit-tracker.habits.v1";
 const habits = [];
@@ -37,12 +37,28 @@ function renderHabits(list, items) {
   for (const habit of items) {
     const li = document.createElement("li");
     li.className = habit.done ? "habit done" : "habit";
-    li.textContent = habit.name;
-    li.addEventListener("click", () => {
+
+    const label = document.createElement("span");
+    label.className = "habit-name";
+    label.textContent = habit.name;
+    label.addEventListener("click", () => {
       habit.done = !habit.done;
       saveHabits();
       renderHabits(list, items);
     });
+
+    const del = document.createElement("button");
+    del.className = "delete";
+    del.textContent = "×";
+    del.setAttribute("aria-label", `Delete ${habit.name}`);
+    del.addEventListener("click", () => {
+      const at = items.indexOf(habit);
+      if (at !== -1) items.splice(at, 1);
+      saveHabits();
+      renderHabits(list, items);
+    });
+
+    li.append(label, del);
     list.appendChild(li);
   }
 }
