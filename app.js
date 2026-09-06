@@ -1,7 +1,7 @@
 "use strict";
 
 // Habit Tracker — entry point.
-// Chapter 02: add habits through a form.
+// Chapter 03: click a habit to toggle it done for today.
 
 const habits = [];
 
@@ -18,14 +18,18 @@ function renderHabits(list, items) {
 
   for (const habit of items) {
     const li = document.createElement("li");
-    li.className = "habit";
+    li.className = habit.done ? "habit done" : "habit";
     li.textContent = habit.name;
+    li.addEventListener("click", () => {
+      habit.done = !habit.done;
+      renderHabits(list, items);
+    });
     list.appendChild(li);
   }
 }
 
 function addHabit(name) {
-  habits.push({ name: name });
+  habits.push({ name: name, done: false });
   renderHabits(document.getElementById("habit-list"), habits);
 }
 

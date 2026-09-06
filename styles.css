@@ -71,6 +71,14 @@ h1 {
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.habit.done {
+  color: var(--muted);
+  text-decoration: line-through;
+  background: #f1efec;
 }
 
 .empty {
