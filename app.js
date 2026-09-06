@@ -3,7 +3,7 @@
 // Habit Tracker — entry point.
 // Chapter 04: persist habits in the browser with localStorage.
 
-const STORAGE_KEY = "habits";
+const STORAGE_KEY = "habit-tracker.habits.v1";
 const habits = [];
 
 function saveHabits() {
