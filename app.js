@@ -33,6 +33,7 @@ function renderHabits(list, items) {
     li.textContent = habit.name;
     li.addEventListener("click", () => {
       habit.done = !habit.done;
+      saveHabits();
       renderHabits(list, items);
     });
     list.appendChild(li);
