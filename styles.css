@@ -67,12 +67,34 @@ h1 {
 }
 
 .habit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
   padding: 0.85rem 1rem;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 0.5rem;
-  cursor: pointer;
   user-select: none;
+}
+
+.habit-name {
+  flex: 1;
+  cursor: pointer;
+}
+
+.delete {
+  border: none;
+  background: none;
+  color: var(--muted);
+  font-size: 1.25rem;
+  line-height: 1;
+  padding: 0 0.25rem;
+  cursor: pointer;
+}
+
+.delete:hover {
+  color: var(--accent);
 }
 
 .habit.done {
